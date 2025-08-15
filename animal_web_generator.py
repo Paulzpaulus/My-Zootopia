@@ -24,17 +24,19 @@ with open("animals_template.html", "r") as template_file:
 
 output = ""
 for animal in animals_data:
-    name = animal.get('name', 'Unknown')
+    name = animal.get('name')
     diet = (animal.get('characteristics') or {}).get('diet', 'Unknown')
-    typ  = (animal.get('characteristics') or {}).get('type', 'Unknown')
+    type_ = (animal.get('characteristics') or {}).get('type', 'Unknown')
     locs = animal.get('locations') or []
     location = locs[0] if locs else 'Unknown'
     
-    output += f"Name: {name}\n"
-    output += f"Diet: {diet}\n"
-    output += f"Location: {location}\n"
-    output += f"Type: {typ}\n\n"
-
+    output += '<li class="cards__item">'
+    output += f"Name: {name}<br/>\n"
+    output += f"Diet: {diet}<br/>\n"
+    output += f"Location: {location}<br/>\n"
+    output += f"Type: {type_}<br/>\n"
+    output += '</li>\n'
+    
 new_html = template.replace("__REPLACE_ANIMALS_INFO__", output) 
 
 with open("animals.html", "w") as file:
