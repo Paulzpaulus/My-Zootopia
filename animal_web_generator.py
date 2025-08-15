@@ -4,21 +4,6 @@ with open("animals_data.json", "r") as data:
     animals_data = json.load(data) 
     
 
-""" def get_animal_info(animals_data):
-    for animal in animals_data:
-        if "name" in animal:
-            print(f"Name: {animal['name']}")
-        if "diet" in animal["characteristics"]:
-            print(f"Diet: {animal['characteristics']['diet']}")
-        if "locations" in animal:
-            print(f"Locations: {animal['locations'][0]}")
-        if "type" in animal["characteristics"]:
-            print(f"Type: {animal['characteristics']['type']}")
-        print()
- """
-
-
-
 with open("animals_template.html", "r") as template_file:
     template = template_file.read() 
 
@@ -30,16 +15,19 @@ for animal in animals_data:
     locs = animal.get('locations') or []
     location = locs[0] if locs else 'Unknown'
     
-    output += '<li class="cards__item">'
-    output += f"Name: {name}<br/>\n"
-    output += f"Diet: {diet}<br/>\n"
-    output += f"Location: {location}<br/>\n"
-    output += f"Type: {type_}<br/>\n"
-    output += '</li>\n'
+    output += "<li class='cards__item'>'"
+    output += f"<div class='card__title'>{name}</div>\n"
+    output += "  <p class='card__text'>\n"
+    output += f" <strong>Diet:</strong> {diet}<br/>\n"
+    output += f"      <strong>Location:</strong> {location}<br/>\n"
+    output += f"      <strong>Type:</strong> {type_}<br/>\n"
+    output += "  </p>\n"
+    output += "</li>\n"
     
 new_html = template.replace("__REPLACE_ANIMALS_INFO__", output) 
 
 with open("animals.html", "w") as file:
     file.write(new_html) 
     
-print("HTML file generated successfully with animal information.")
+print("HTML file generated successfully with animal information.") 
+
