@@ -3,6 +3,8 @@ from animal_web_generator_services import load_animals_data, load_animals_templa
 
     
 def main():
+    animals_data = load_animals_data()
+    template = load_animals_template()
     if animals_data and template:
         output = ""
         for animal in animals_data:
@@ -18,8 +20,6 @@ def main():
         print("Failed to generate HTML file due to missing data or template.")
         
 if __name__ == "__main__":
-    animals_data = load_animals_data()
-    template = load_animals_template()
     main()   
 
     
